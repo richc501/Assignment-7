@@ -11,7 +11,9 @@ public class CycleFileInput{
 		try
 		{
 			Cycle test = new Cycle();
-			Scanner fileReader = new Scanner(new File("CycleOut.txt"));
+			File file = new File("CycleOut.text");
+			file.exists();
+			Scanner fileReader = new Scanner(file);
 			System.out.println(fileReader.nextLine());
 			fileReader.close();
 		}

@@ -1,5 +1,6 @@
 package cycleFileOutput;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 
@@ -9,7 +10,10 @@ public class CycleFileOutout{
 		try
 		{
 			Cycle test = new Cycle();
-			PrintWriter fileWriter = new PrintWriter("CycleOut.txt");
+			File file = new File("CycleOut.txt");
+			PrintWriter fileWriter = new PrintWriter(file);
+			if (file.exists())
+				System.out.println("TRUE");
 			fileWriter.println(test);
 			System.out.println(test);
 			fileWriter.close();

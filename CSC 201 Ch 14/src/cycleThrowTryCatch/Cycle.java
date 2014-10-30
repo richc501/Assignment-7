@@ -1,4 +1,8 @@
-package Cycle;
+package cycleThrowTryCatch;
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+
 //Richard Cunningham
 //The purpose of this assignment is illustrate the use of the “this” reference with constructors, instance variables and instance methods. 
 //Problem Statement
@@ -27,27 +31,54 @@ package Cycle;
 //Document each statement concisely.
 //Post your Java source code file and output text file in Blackboard.
 public class Cycle {
-	private int numberOfWheels, weight;
+	private double numberOfWheels, weight;
+	Scanner input = new Scanner(System.in);
+	boolean continueInput=true;
 	public Cycle()//default constructor
 	{
-		this(100,1000);
+		do
+		{
+			try
+			{
+				System.out.println("Enter number of wheels: ");
+				numberOfWheels = input.nextDouble();
+				System.out.println("Enter weight:");
+				weight = input.nextDouble();
+				if(numberOfWheels<=0||weight<=0)
+					throw new Exception("Values cannot be less than or equal to zero");
+				else
+					continueInput=false;
+			}
+			catch(InputMismatchException ex)
+			{
+				System.out.println("Try again. (Incorrect input: an integer is required)");
+				input.nextLine(); // Discard input 
+			}
+			catch(Exception ex)
+			{
+				System.out.println(ex.getMessage());
+				System.exit(0);
+			}
+			Cycle test = new Cycle(numberOfWheels,weight);
+			System.out.println(test);
+		}while(continueInput);
 	}
-	public Cycle(int numberOfWheels, int weight)//constructor
+	public Cycle(double numberOfWheels2, double weight2)//constructor
 	{
-		this.numberOfWheels=numberOfWheels;
-		this.weight=weight;
+		this.numberOfWheels=numberOfWheels2;
+		this.weight=weight2;
 	}
 	
 	
 	
 	//getters and setters
-	public int getNumberOfWheels() {
+	public double getNumberOfWheels() {
 		return numberOfWheels;
 	}
 	public void setNumberOfWheels(int numberOfWheels) {
 		this.numberOfWheels = numberOfWheels;
 	}
-	public int getWeight() {
+	public double getWeight() {
 		return weight;
 	}
 	public void setWeight(int weight) {
